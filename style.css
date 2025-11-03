@@ -1,6 +1,6 @@
 
 body {
-    margin-top: 0%;
+    margin-top: 1%;
     text-align: center;
 } 
 
@@ -11,6 +11,7 @@ body {
     color: black;
     font-size: larger;
     background-color: blanchedalmond;
-    border-bottom: 2px;
+    border-bottom: 6px;
 
 }
+
