@@ -14,4 +14,6 @@ body {
     border-bottom: 6px;
 
 }
-
+..col {
+    font-size: 20px;
+}
