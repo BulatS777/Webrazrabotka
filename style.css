@@ -1,0 +1,15 @@
+
+body {
+    margin-top: 10%;
+    text-align: center;
+} 
+
+.header {
+    margin-top: 1%;
+    height: 20%;
+    text-align: center;
+    color: black;
+    font-size: larger;
+    background-color: blanchedalmond;
+    border-bottom: 2px;
+}
