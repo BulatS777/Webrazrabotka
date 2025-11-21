@@ -253,4 +253,132 @@
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             observer.observe(el);
+
         });
+
+       // Управление cookies уведомлением
+          function initCookiesNotification() {
+               // Проверяем, было ли уже принято соглашение
+              const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+    
+              if (!cookiesAccepted) {
+                  // Показываем уведомление через 2 секунды после загрузки страницы
+                  setTimeout(() => {
+                      const notification = document.getElementById('cookiesNotification');
+                      notification.classList.add('show');
+                  }, 2000);
+              }
+          }
+
+          function acceptCookies() {
+              // Сохраняем согласие в localStorage
+              localStorage.setItem('cookiesAccepted', 'true');
+    
+              // Скрываем уведомление
+              const notification = document.getElementById('cookiesNotification');
+              notification.classList.remove('show');
+    
+              // Можно добавить отправку события в Analytics
+              console.log('Cookies приняты пользователем');
+    
+              // Показываем подтверждение (опционально)
+              showCookiesConfirmation();
+          }
+
+          function openCookiesPolicy() {
+              // Закрываем текущее уведомление
+              const notification = document.getElementById('cookiesNotification');
+              notification.classList.remove('show');
+    
+              // Открываем модальное окно с политикой cookies
+              openCookiesPolicyModal();
+          }
+
+          function showCookiesConfirmation() {
+              // Создаем временное подтверждение
+              const confirmation = document.createElement('div');
+              confirmation.innerHTML = `
+                  <div style="
+                      position: fixed;
+                      bottom: 20px;
+                      right: 20px;
+                      background: #4CAF50;
+                      color: white;
+                      padding: 10px 20px;
+                      border-radius: 5px;
+                      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+                      z-index: 1001;
+                      animation: slideIn 0.3s ease;
+                  ">
+                      ✅ Настройки cookies сохранены
+                  </div>
+              `;
+    
+              document.body.appendChild(confirmation);
+    
+                   // Удаляем через 3 секунды
+                   setTimeout(() => {
+                  confirmation.remove();
+              }, 3000);
+          }
+
+          function openCookiesPolicyModal() {
+              // Создаем модальное окно с политикой cookies
+              const modal = document.createElement('div');
+              modal.className = 'modal';
+              modal.style.display = 'flex';
+              modal.innerHTML = `
+                  <div class="modal-content">
+                      <span class="close-modal" onclick="this.parentElement.parentElement.remove()">&times;</span>
+                      <h2>Политика использования cookies</h2>
+                      <div style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+                          <h3>Что такое cookies?</h3>
+                          <p>Cookies — это небольшие текстовые файлы, которые хранятся на вашем устройстве при посещении веб-сайтов.</p>
+                
+                          <h3>Какие cookies мы используем?</h3>
+                          <ul>
+                              <li><strong>Необходимые cookies:</strong> Обеспечивают работу основных функций сайта</li>
+                              <li><strong>Аналитические cookies:</strong> Помогают нам понимать, как пользователи взаимодействуют с сайтом</li>
+                              <li><strong>Функциональные cookies:</strong> Запоминают ваши preferences и настройки</li>
+                          </ul>
+                
+                          <h3>Управление cookies</h3>
+                               <p>Вы можете управлять настройками cookies через ваш браузер. Однако отключение некоторых cookies может ограничить функциональность сайта.</p>
+                
+                               <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                                   <p><strong>Продолжая использовать наш сайт, вы соглашаетесь с использованием cookies в соответствии с этой политикой.</strong></p>
+                               </div>
+                      </div>
+                      <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end;">
+                          <button class="btn btn-outline" onclick="this.closest('.modal').remove()">Закрыть</button>
+                          <button class="btn" onclick="acceptCookiesFromModal(this)">Принять все</button>
+                      </div>
+                  </div>
+                   `;
+    
+              document.body.appendChild(modal);
+    
+              // Закрытие при клике вне модального окна
+              modal.addEventListener('click', function(e) {
+                  if (e.target === modal) {
+                      modal.remove();
+                  }
+              });
+          }
+
+          function acceptCookiesFromModal(button) {
+              const modal = button.closest('.modal');
+              acceptCookies();
+              modal.remove();
+          }
+
+          // Функция для сброса cookies согласия (для тестирования)
+               function resetCookiesConsent() {
+                   localStorage.removeItem('cookiesAccepted');
+                   console.log('Cookies согласие сброшено. Уведомление появится при следующей загрузке.');
+               }
+
+          // Инициализация при загрузке страницы
+               document.addEventListener('DOMContentLoaded', function() {
+                   initCookiesNotification();
+          });
