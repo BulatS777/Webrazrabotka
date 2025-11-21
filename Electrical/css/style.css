@@ -587,4 +587,73 @@
 
         .close-modal:hover {
             color: #333;
+
         }
+       /* Стили для уведомления о cookies */
+       .cookies-notification {
+           position: fixed;
+           bottom: 20px;
+           left: 20px;
+           right: 20px;
+           background: white;
+           border-radius: 10px;
+           box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+           z-index: 1000;
+           padding: 20px;
+           max-width: 500px;
+           transform: translateY(150%);
+           transition: transform 0.5s ease;
+           border-left: 4px solid #ff9800;
+       }
+
+       .cookies-notification.show {
+           transform: translateY(0);
+       }
+
+       .cookies-content {
+           display: flex;
+           align-items: center;
+           gap: 20px;
+           flex-wrap: wrap;
+       }
+
+       .cookies-text {
+           flex: 1;
+           min-width: 250px;
+       }
+
+       .cookies-text h4 {
+           margin-bottom: 5px;
+           color: #1a237e;
+       }
+
+       .cookies-text p {
+           font-size: 0.9rem;
+           color: #666;
+           margin: 0;
+           line-height: 1.4;
+       }
+
+       .cookies-buttons {
+           display: flex;
+           gap: 10px;
+           flex-shrink: 0;
+       }
+
+       @media (max-width: 768px) {
+           .cookies-notification {
+               left: 10px;
+               right: 10px;
+               bottom: 10px;
+           }
+    
+           .cookies-content {
+               flex-direction: column;
+               align-items: stretch;
+               text-align: center;
+           }
+    
+           .cookies-buttons {
+               justify-content: center;
+           }
+       }
