@@ -1,6 +1,6 @@
      
 
-// Плавная прокрутка для навигационных ссылок
+
         document.querySelectorAll('nav a, .btn[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -18,7 +18,7 @@
         });
 
        
-        // Модальное окно для категорий
+        
         function showCategory(category) {
             const modal = document.getElementById('categoryModal');
             const modalTitle = document.getElementById('modalTitle');
@@ -99,7 +99,7 @@
             }
         });
         
-        // Анимация при прокрутке
+       
         const observerOptions = {
             threshold: 0.1
         };
@@ -113,24 +113,24 @@
             });
         }, observerOptions);
 
-        // Функция для перехода на страницу товара
+       
         function viewProduct(productId) {
         // Сохраняем ID товара в sessionStorage для использования на странице товара
         sessionStorage.setItem('currentProduct', productId);
-        // Переходим на страницу товара
+       
         window.location.href = 'product.html';
         }
 
-        // Функция для добавления в корзину (заглушка)
+       
         function addToCart(button) {
         const productCard = button.closest('.product-card');
         const productName = productCard.querySelector('h3').textContent;
         const productPrice = productCard.querySelector('.product-price').textContent;
     
-        // В реальном приложении здесь была бы логика добавления в корзину
+        //  логика добавления в корзину
         console.log(`Товар добавлен в корзину: ${productName} - ${productPrice}`);
     
-        // Визуальный feedback
+       
         const originalText = button.textContent;
         button.textContent = 'Добавлено!';
         button.style.background = '#4CAF50';
@@ -141,9 +141,9 @@
          }, 2000);
         }
 
-        // добавленные формы
+       
           document.addEventListener('DOMContentLoaded', function() {
-            // Элементы DOM
+           
             const contactForm = document.getElementById('requestForm');
             const policyAgreement = document.getElementById('policyAgreement');
             const policyLink = document.getElementById('policyLink');
@@ -152,35 +152,35 @@
             const submitBtn = document.getElementById('submitBtn');
             const successMessage = document.getElementById('successMessage');
             
-            // Элементы для валидации
+          
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
             const nameError = document.getElementById('nameError');
             const emailError = document.getElementById('emailError');
             const policyError = document.getElementById('policyError');
             
-            // Открытие модального окна с политикой
+         
             policyLink.addEventListener('click', function() {
                 policyModal.style.display = 'flex';
             });
             
-            // Закрытие модального окна
+            
             closeModal.addEventListener('click', function() {
                 policyModal.style.display = 'none';
             });
             
-            // Закрытие модального окна при клике вне его
+         
             window.addEventListener('click', function(event) {
                 if (event.target === policyModal) {
                     policyModal.style.display = 'none';
                 }
             });
             
-            // Валидация формы
+           
             function validateForm() {
                 let isValid = true;
                 
-                // Валидация имени
+              
                 if (nameInput.value.trim() === '') {
                     nameError.style.display = 'block';
                     isValid = false;
@@ -188,7 +188,7 @@
                     nameError.style.display = 'none';
                 }
                 
-                // Валидация email
+             
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(emailInput.value)) {
                     emailError.style.display = 'block';
@@ -197,7 +197,7 @@
                     emailError.style.display = 'none';
                 }
                 
-                // Валидация согласия с политикой
+               
                 if (!policyAgreement.checked) {
                     policyError.style.display = 'block';
                     isValid = false;
@@ -208,13 +208,13 @@
                 return isValid;
             }
             
-            // Активация/деактивация кнопки отправки
+           
             function toggleSubmitButton() {
                 const isPolicyAgreed = policyAgreement.checked;
                 submitBtn.disabled = !isPolicyAgreed;
             }
             
-            // Обработка изменений в форме
+         
             
             policyAgreement.addEventListener('change', function() {
                 toggleSubmitButton();
@@ -223,19 +223,19 @@
                 }
             });
             
-            // Обработка отправки формы
+          
             contactForm.addEventListener('submit', function(event) {
                 event.preventDefault();
                 
                 if (validateForm()) {
-                    // В реальном приложении здесь был бы AJAX-запрос к серверу
+                   
                     successMessage.style.display = 'block';
                     successMessage.classList.add('fade-in'); 
                     
                     contactForm.reset();
                     submitBtn.disabled = true;
                     
-                    // Скрываем сообщение об успехе через 5 секунд
+                 
                     setTimeout(function() {
                         successMessage.style.display = 'none';
                         successMessage.classList.remove('fade-in');
@@ -243,11 +243,10 @@
                 }
             });
             
-            // Инициализация - кнопка отправки изначально неактивна
             toggleSubmitButton();
         });
 
-        // Наблюдаем за элементами для анимации
+     
         document.querySelectorAll('.category-card, .product-card, .service-card').forEach(el => {
             el.style.opacity = 0;
             el.style.transform = 'translateY(20px)';
@@ -256,13 +255,13 @@
 
         });
 
-       // Управление cookies уведомлением
+      
           function initCookiesNotification() {
-               // Проверяем, было ли уже принято соглашение
+              
               const cookiesAccepted = localStorage.getItem('cookiesAccepted');
     
               if (!cookiesAccepted) {
-                  // Показываем уведомление через 2 секунды после загрузки страницы
+               
                   setTimeout(() => {
                       const notification = document.getElementById('cookiesNotification');
                       notification.classList.add('show');
@@ -271,31 +270,31 @@
           }
 
           function acceptCookies() {
-              // Сохраняем согласие в localStorage
+            
               localStorage.setItem('cookiesAccepted', 'true');
     
-              // Скрываем уведомление
+             
               const notification = document.getElementById('cookiesNotification');
               notification.classList.remove('show');
     
-              // Можно добавить отправку события в Analytics
+            
               console.log('Cookies приняты пользователем');
     
-              // Показываем подтверждение (опционально)
+          
               showCookiesConfirmation();
           }
 
           function openCookiesPolicy() {
-              // Закрываем текущее уведомление
+              
               const notification = document.getElementById('cookiesNotification');
               notification.classList.remove('show');
     
-              // Открываем модальное окно с политикой cookies
+          
               openCookiesPolicyModal();
           }
 
           function showCookiesConfirmation() {
-              // Создаем временное подтверждение
+           
               const confirmation = document.createElement('div');
               confirmation.innerHTML = `
                   <div style="
@@ -316,14 +315,14 @@
     
               document.body.appendChild(confirmation);
     
-                   // Удаляем через 3 секунды
+                 
                    setTimeout(() => {
                   confirmation.remove();
               }, 3000);
           }
 
           function openCookiesPolicyModal() {
-              // Создаем модальное окно с политикой cookies
+           
               const modal = document.createElement('div');
               modal.className = 'modal';
               modal.style.display = 'flex';
@@ -378,7 +377,8 @@
                    console.log('Cookies согласие сброшено. Уведомление появится при следующей загрузке.');
                }
 
-          // Инициализация при загрузке страницы
+      
                document.addEventListener('DOMContentLoaded', function() {
                    initCookiesNotification();
           });
+
