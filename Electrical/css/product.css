@@ -1,5 +1,5 @@
 
-/* Стили из основного файла + дополнительные для страницы товара */
+
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +18,7 @@
             padding: 0 15px;
         }
 
-        /* Шапка и навигация - такие же как в основном файле */
+        
         header {
             background: linear-gradient(135deg, #1a237e, #283593);
             color: white;
@@ -79,7 +79,7 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Стили для страницы товара */
+       
         .product-detail {
             padding: 40px 0;
         }
@@ -406,4 +406,5 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
             color: #ddd;
+
         }
