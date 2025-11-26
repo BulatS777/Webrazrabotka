@@ -376,7 +376,7 @@
         .contact-info {
             flex: 1;
             min-width: 280px;
-            margin-left: 30px;
+           margin-left: 30px;
         }
 
         .contact-form {
@@ -657,5 +657,6 @@
                justify-content: center;
            }
        }
+
 
 
