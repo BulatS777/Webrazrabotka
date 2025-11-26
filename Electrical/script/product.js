@@ -1,4 +1,4 @@
-// База данных товаров
+
         const products = {
             'cable-vvg': {
                 title: 'Кабель ВВГнг 3х1.5',
@@ -76,7 +76,7 @@
             }
         };
 
-        // Загрузка данных товара
+        
         document.addEventListener('DOMContentLoaded', function() {
             const productId = sessionStorage.getItem('currentProduct');
             const product = products[productId];
@@ -85,13 +85,13 @@
                 loadProductData(product);
                 loadRelatedProducts(product.related);
             } else {
-                // Если товар не найден, перенаправляем на главную
+             
                 window.location.href = 'index.html';
             }
         });
 
         function loadProductData(product) {
-            // Основная информация
+            
             document.getElementById('product-title').textContent = product.title;
             document.getElementById('product-description').textContent = product.description;
             document.getElementById('product-price').textContent = product.price;
@@ -102,7 +102,7 @@
             document.getElementById('product-rating').textContent = product.rating;
             document.getElementById('detailed-description').textContent = product.detailedDescription;
 
-            // Галерея изображений
+          
             const mainImage = document.getElementById('main-product-image');
             const thumbnailsContainer = document.getElementById('product-thumbnails');
 
@@ -118,7 +118,7 @@
                 thumbnailsContainer.appendChild(thumbnail);
             });
 
-            // Характеристики
+            
             const specsTable = document.getElementById('specs-table');
             specsTable.innerHTML = '';
             for (const [key, value] of Object.entries(product.specs)) {
@@ -162,17 +162,17 @@
         function switchImage(imageSrc, clickedThumbnail) {
             document.getElementById('main-product-image').src = imageSrc;
             
-            // Убираем активный класс у всех миниатюр
+           
             document.querySelectorAll('.thumbnail').forEach(thumb => {
                 thumb.classList.remove('active');
             });
             
-            // Добавляем активный класс к clickedThumbnail
+           
             clickedThumbnail.classList.add('active');
         }
 
         function switchTab(tabName) {
-            // Убираем активный класс у всех табов и контента
+            
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
@@ -180,7 +180,7 @@
                 content.classList.remove('active');
             });
 
-            // Добавляем активный класс к выбранному табу и контенту
+          
             document.querySelector(`.tab[onclick="switchTab('${tabName}')"]`).classList.add('active');
             document.getElementById(`${tabName}-tab`).classList.add('active');
         }
@@ -204,7 +204,7 @@
             }
         }
 
-        // Функции из основного файла
+        
         function viewProduct(productId) {
             sessionStorage.setItem('currentProduct', productId);
             window.location.href = 'product.html';
@@ -217,7 +217,7 @@
             
             alert(`Товар "${productName}" добавлен в корзину!`);
             
-            // Визуальный feedback
+           
             const originalText = button.textContent;
             button.textContent = 'Добавлено!';
             button.style.background = '#4CAF50';
@@ -226,4 +226,5 @@
                 button.textContent = originalText;
                 button.style.background = '';
             }, 2000);
+
         }
